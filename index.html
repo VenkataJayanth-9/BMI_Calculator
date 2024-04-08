@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI_calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Welcome to BMI calculator.</h1>
+    <img src="logo.jpg" alt="logo">
+    <br><br><br>
+    <input type="number" id="height" placeholder="enter your height in mts">
+    <input type="number" id="weight" placeholder="enter your weight in kgs">
+    <br><br><br>
+    <button type="button" id="submitBtn">SUBMIT</button>
+    <!-- Result will be displayed here -->
+    <div id="result"></div>
+    <script>
+        // Add event listener to the submit button
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            // Retrieve height and weight values
+            var height = parseFloat(document.getElementById('height').value);
+            var weight = parseFloat(document.getElementById('weight').value);
+
+            // Check if height and weight are valid numbers
+            if (isNaN(height) || isNaN(weight)) {
+                document.getElementById('result').innerHTML = "Please enter valid height and weight.";
+                return;
+            }
+
+            // Calculate BMI
+            var BMI = weight / (height * height);
+            var resultMessage = "";
+            if (BMI < 18.5) {
+                resultMessage = "You are underweight. You can follow a weight gain diet.";
+            } else if (BMI >= 18.5 && BMI < 24.9) {
+                resultMessage = "You are in a healthy weight range. There's not much to do, just maintain your current lifestyle.";
+            } else if (BMI >= 24.9 && BMI < 29.9) {
+                resultMessage = "You are overweight. Consider following a weight loss diet and exercise regularly.";
+            } else if (BMI >= 30.0 && BMI < 34.9) {
+                resultMessage = "You are in the first stage of obesity. It's important to take action to improve your health.";
+            } else if (BMI >= 35.0 && BMI < 40.0) {
+                resultMessage = "You are in the second stage of obesity. Significant lifestyle changes may be necessary.";
+            } else if (BMI >= 40.0) {
+                resultMessage = "You are in the last stage of obesity. Immediate medical attention and lifestyle changes are critical.";
+            } else {
+                resultMessage = "Invalid data.";
+            }
+
+            // Display result message
+            document.getElementById('result').innerHTML = resultMessage;
+        });
+    </script>
+</body>
+</html>
